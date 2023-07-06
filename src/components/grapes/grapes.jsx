@@ -9,18 +9,19 @@ const Grapes = () => {
   const title = useRef();
   const txt = useRef();
   const btn = useRef();
+  const allImages = useRef();
 
   useEffect(() => {}, []);
 
   return (
     <div>
       <div className="bg-green-200 w-screen h-screen " ref={containerImages}>
-        <div className="flex ">
+        <div className="flex" ref={allImages}>
           <div className=" max-w-full max-h-full">
             <img
               src="./cat.svg"
               alt="Cat"
-              className="max-w-full max-h-full object-contain invisible"
+              className="max-w-full max-h-full object-contain"
               ref={imgOne}
             />
           </div>
@@ -44,12 +45,15 @@ const Grapes = () => {
         <div className="flex justify-center mt-20">
           <button
             onClick={() => {
-              gsap.from(imgOne.current, {
-                y: -100,
-                rotation: 90,
+              gsap.from("img", {
                 autoAlpha: 0,
+                y: -100,
+                ease: "power4",
                 duration: 2,
-                ease: "bounce.out",
+                stagger: {
+                  each: 0.5,
+                  from: "center",
+                },
               });
             }}
             className="rounded bg-blue-700 px-5 text-white"
