@@ -45,15 +45,12 @@ const Grapes = () => {
         <div className="flex justify-center mt-20">
           <button
             onClick={() => {
-              gsap.from("img", {
-                autoAlpha: 0,
-                y: -100,
-                ease: "power4",
-                duration: 2,
-                stagger: {
-                  each: 0.5,
-                  from: "center",
-                },
+              gsap.to(imgOne.current, {
+                keyframes: [
+                  { duration: 0.3, x: 100 },
+                  { duration: 0.3, y: 100 },
+                  { duration: 0.3, x: 200 },
+                ],
               });
             }}
             className="rounded bg-blue-700 px-5 text-white"
