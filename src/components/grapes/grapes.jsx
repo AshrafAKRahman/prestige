@@ -14,33 +14,52 @@ const Grapes = () => {
 
   return (
     <div>
-      <div
-        className="bg-green-200 w-screen h-screen flex"
-        ref={containerImages}
-      >
-        <div className=" max-w-full max-h-full">
-          <img
-            src="./cat.svg"
-            alt="Cat"
-            className="max-w-full max-h-full object-contain invisible"
-            ref={imgOne}
-          />
+      <div className="bg-green-200 w-screen h-screen " ref={containerImages}>
+        <div className="flex ">
+          <div className=" max-w-full max-h-full">
+            <img
+              src="./cat.svg"
+              alt="Cat"
+              className="max-w-full max-h-full object-contain invisible"
+              ref={imgOne}
+            />
+          </div>
+          <div className=" max-w-full max-h-full">
+            <img
+              src="./fuji.svg"
+              alt="Mountain"
+              className="max-w-full max-h-full object-contain "
+              ref={imgTwo}
+            />
+          </div>
+          <div className=" max-w-full max-h-full">
+            <img
+              src="./ice-cream.svg"
+              alt="Ice Cream"
+              className="max-w-full max-h-full object-contain"
+              ref={imgThree}
+            />
+          </div>
         </div>
-        <div className=" max-w-full max-h-full">
-          <img
-            src="./fuji.svg"
-            alt="Mountain"
-            className="max-w-full max-h-full object-contain "
-            ref={imgTwo}
-          />
-        </div>
-        <div className=" max-w-full max-h-full">
-          <img
-            src="./ice-cream.svg"
-            alt="Ice Cream"
-            className="max-w-full max-h-full object-contain"
-            ref={imgThree}
-          />
+        <div className="flex justify-center mt-20">
+          <button
+            onClick={() => {
+              gsap.fromTo(
+                imgOne.current,
+                {
+                  autoAlpha: 0,
+                },
+                {
+                  autoAlpha: 1,
+                  duration: 4,
+                }
+              );
+            }}
+            className="rounded bg-blue-700 px-5 text-white"
+            ref={btn}
+          >
+            Validate
+          </button>
         </div>
       </div>
 
@@ -56,20 +75,7 @@ const Grapes = () => {
       >
         Let's play with Greensock.
       </p>
-      <div className="flex justify-center bg-blue-700">
-        <button
-          onClick={() => {
-            gsap.from(imgOne.current, {
-              autoAlpha: 0,
-              duration: 4,
-            });
-          }}
-          className={` ${btn.current ? "button" : ""}`}
-          ref={btn}
-        >
-          Validate
-        </button>
-      </div>
+      <div className="flex justify-center bg-blue-700"></div>
     </div>
   );
 };
