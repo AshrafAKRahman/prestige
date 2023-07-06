@@ -45,12 +45,22 @@ const Grapes = () => {
         <div className="flex justify-center mt-20">
           <button
             onClick={() => {
-              gsap.to(imgOne.current, {
-                keyframes: [
-                  { duration: 0.3, x: 100 },
-                  { duration: 0.3, y: 100 },
-                  { duration: 0.3, x: 200 },
-                ],
+              gsap.registerEffect({
+                name: "imgAnimation",
+                effect: (targets, config) => {
+                  return gsap.to(targets, {
+                    duration: config.duration,
+                    y: 200,
+                    scale: 1.4,
+                    rotation: 360,
+                  });
+                },
+                defaults: {
+                  duration: 2,
+                },
+              });
+              gsap.effects.imgAnimation(imgOne.current, {
+                duration: 5,
               });
             }}
             className="rounded bg-blue-700 px-5 text-white"
