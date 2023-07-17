@@ -11,7 +11,6 @@ const Grapes = () => {
   const btn = useRef();
   const allImages = useRef();
   const tween = useRef();
-  const tl = gsap.timeline();
 
   /*
     UTILITY METHODS
@@ -28,21 +27,45 @@ const Grapes = () => {
 
   const handleClick = () => {
     /*TIMELINES*/
+    const tl = gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: "power4.out",
+      },
+      onStart: () => {
+        console.log("start");
+      },
+      onComplete: () => {
+        console.log("complete");
+      },
+    });
     allImages.current.classList.remove("invisible");
+    title.current.classList.remove("invisible");
+    txt.current.classList.remove("invisible");
+
     tl.from(imgOne.current, {
       autoAlpha: 0,
-      y: -50,
-      duration: 1,
+      y: -80,
     });
-    tl.from(imgTwo.current, {
-      autoAlpha: 0,
-      y: -50,
-      duration: 1,
-    });
+    tl.from(
+      imgTwo.current,
+      {
+        autoAlpha: 0,
+        y: -80,
+      },
+      "<"
+    );
     tl.from(imgThree.current, {
       autoAlpha: 0,
+      y: -80,
+    });
+    tl.from(title.current, {
+      autoAlpha: 0,
       y: -50,
-      duration: 1,
+    });
+    tl.from(txt.current, {
+      autoAlpha: 0,
+      y: -50,
     });
   };
   useEffect(() => {}, []);
@@ -50,7 +73,7 @@ const Grapes = () => {
   return (
     <div>
       <div className="bg-green-200 w-screen h-screen " ref={containerImages}>
-        <div className="flex invisible " ref={allImages}>
+        <div className="flex invisible pt-40 invisible" ref={allImages}>
           <div className=" max-w-full max-h-full">
             <img
               src="./cat.svg"
@@ -76,6 +99,18 @@ const Grapes = () => {
             />
           </div>
         </div>
+        <h1
+          className="text-center text-black leading-6 mt-12 text-base sm:text-lg lg:text-xl xl:text-2xl pt-0 pb-2.5 md:mt-50 invisible"
+          ref={title}
+        >
+          Welcome to the sandbox.
+        </h1>
+        <p
+          className="text-center text-black leading-6 mt-2.5 text-xs sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl pt-0 pb-2.5 invisible"
+          ref={txt}
+        >
+          Let's play with Greensock.
+        </p>
         <div className="flex justify-center mt-20">
           <button
             onClick={handleClick}
@@ -85,18 +120,6 @@ const Grapes = () => {
             Validate
           </button>
         </div>
-        <h1
-          className="text-center text-black leading-6 mt-12 text-base sm:text-lg lg:text-xl xl:text-2xl pt-0 pb-2.5 md:mt-50"
-          ref={title}
-        >
-          Welcome to the sandbox.
-        </h1>
-        <p
-          className="text-center text-black leading-6 mt-2.5 text-xs sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl pt-0 pb-2.5"
-          ref={txt}
-        >
-          Let's play with Greensock.
-        </p>
       </div>
     </div>
   );
