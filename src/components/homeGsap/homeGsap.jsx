@@ -26,7 +26,8 @@ const HomeGsap = () => {
           container_nav.current,
           { autoAlpha: 0, y: -50, duration: 0.4, stagger: 0.1 },
           "-=0.2"
-        );
+        )
+        .from(navImages.current, { autoAlpha: 0, y: -50 });
     };
     revealAnim();
   }, []);
@@ -46,21 +47,15 @@ const HomeGsap = () => {
           className="text-white flex justify-center invisible"
           ref={container_nav}
         >
-          <div>
-            <a className="mr-10 " href="#">
-              HOME
-            </a>
-          </div>
-          <div>
-            <a className="mr-10 " href="#">
-              WINES
-            </a>
-          </div>
-          <div>
-            <a className="" href="#">
-              CONTACT
-            </a>
-          </div>
+          <a className="mr-10 " href="#">
+            HOME
+          </a>
+          <a className="mr-10 " href="#">
+            WINES
+          </a>
+          <a className="" href="#">
+            CONTACT
+          </a>
         </div>
         <div className="flex justify-end invisible" ref={navImages}>
           <img className="w-10" src="/leaf.svg" alt="leaf" ref={logo_leaf} />
